@@ -47,9 +47,9 @@ class Args
     final CollectRequest request;
 
 
-    public Args( RepositorySystemSession session, RequestTrace trace, DataPool pool, NodeStack nodes,
-                 DefaultDependencyCollectionContext collectionContext, DefaultVersionFilterContext versionContext,
-                 CollectRequest request )
+    Args( RepositorySystemSession session, RequestTrace trace, DataPool pool, NodeStack nodes,
+         DefaultDependencyCollectionContext collectionContext, DefaultVersionFilterContext versionContext,
+         CollectRequest request )
     {
         this.session = session;
         this.request = request;

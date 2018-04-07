@@ -57,12 +57,12 @@ class DependencyContext
 
     ArtifactDescriptorResult descriptorResult;
 
-    public DependencyContext()
+    DependencyContext()
     {
         // empty
     }
 
-    public DependencyContext( DefaultDependencyCollectionContext context, Dependency dependency )
+    DependencyContext( DefaultDependencyCollectionContext context, Dependency dependency )
     {
         this.context = context;
         this.origDependency = dependency;

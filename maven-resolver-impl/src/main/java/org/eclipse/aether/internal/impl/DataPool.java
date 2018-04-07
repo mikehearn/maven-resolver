@@ -1,4 +1,4 @@
-package org.eclipse.aether.internal.impl.collect;
+package org.eclipse.aether.internal.impl;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -60,7 +60,7 @@ final class DataPool
 
     private static final String DESCRIPTORS = DataPool.class.getName() + "$Descriptors";
 
-    public static final Future<ArtifactDescriptorResult> NO_DESCRIPTOR =
+    static final Future<ArtifactDescriptorResult> NO_DESCRIPTOR =
         new FutureResult<>( new ArtifactDescriptorResult( new ArtifactDescriptorRequest() ) );
 
     private ObjectPool<Artifact> artifacts;
@@ -196,14 +196,15 @@ final class DataPool
     {
         Future<ArtifactDescriptorResult> futureResult;
 
-        public GoodDescriptor( Future<ArtifactDescriptorResult> futureResult )
+        GoodDescriptor( Future<ArtifactDescriptorResult> futureResult )
         {
             this.futureResult = futureResult;
         }
 
         public Future<ArtifactDescriptorResult> toResult( final ArtifactDescriptorRequest request )
         {
-            return new Future<ArtifactDescriptorResult>() {
+            return new Future<ArtifactDescriptorResult>()
+            {
 
                 public boolean cancel( boolean mayInterruptIfRunning )
                 {

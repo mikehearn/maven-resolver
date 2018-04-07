@@ -35,7 +35,7 @@ class Results
 
     String errorPath;
 
-    public Results( CollectResult result, RepositorySystemSession session )
+    Results( CollectResult result, RepositorySystemSession session )
     {
         this.result = result;
         this.maxExceptions = ConfigUtils.getInteger( session, 50, DefaultDependencyCollector.CONFIG_PROP_MAX_EXCEPTIONS );
