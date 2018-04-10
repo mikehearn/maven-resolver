@@ -37,6 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -95,7 +96,15 @@ public class DefaultDependencyCollector
 
     private VersionRangeResolver versionRangeResolver;
 
-    private ExecutorService executor = Executors.newFixedThreadPool( 5 );
+    private static final ThreadGroup threadGroup = new ThreadGroup( "Maven Resolver dependency resolution" );
+    private ExecutorService executor = Executors.newCachedThreadPool( new ThreadFactory() {
+        @Override
+        public Thread newThread( Runnable r ) {
+            Thread t = new Thread( threadGroup, r, "Maven Resolver dependency resolution" );
+            t.setDaemon( true );
+            return t;
+        }
+    } );
 
     public DefaultDependencyCollector()
     {
